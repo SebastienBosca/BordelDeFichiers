@@ -1,0 +1,238 @@
+{
+  "address": "GfQXyiCAShHKRZEehahvGddHjLeFhpthAosK7yQ4SDMD",
+  "metadata": {
+    "name": "solver",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "claim",
+      "discriminator": [
+        62,
+        198,
+        214,
+        193,
+        213,
+        159,
+        108,
+        210
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "set_id",
+      "discriminator": [
+        149,
+        105,
+        18,
+        99,
+        231,
+        229,
+        207,
+        112
+      ],
+      "accounts": [
+        {
+          "name": "nft_account",
+          "writable": true
+        },
+        {
+          "name": "minter_program",
+          "address": "4XRSfpF2af5TRCCDfx2LC6nFp7Gm482yVj2cj6N15gcx"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "solve",
+      "discriminator": [
+        54,
+        180,
+        237,
+        134,
+        55,
+        139,
+        94,
+        208
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  71,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "id_nft"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "width",
+          "type": "u8"
+        },
+        {
+          "name": "height",
+          "type": "u8"
+        },
+        {
+          "name": "id_nft",
+          "type": "u32"
+        },
+        {
+          "name": "map_data",
+          "type": "bytes"
+        },
+        {
+          "name": "directions",
+          "type": "bytes"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "GameState",
+      "discriminator": [
+        144,
+        94,
+        208,
+        172,
+        248,
+        99,
+        134,
+        120
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id_nft",
+            "type": "u32"
+          },
+          {
+            "name": "solved",
+            "type": "bool"
+          },
+          {
+            "name": "best_soluce",
+            "type": "bytes"
+          },
+          {
+            "name": "leader",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "NftAccount",
+      "discriminator": [
+        33,
+        180,
+        91,
+        53,
+        236,
+        15,
+        63,
+        97
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "id",
+            "type": "u32"
+          },
+          {
+            "name": "height",
+            "type": "u8"
+          },
+          {
+            "name": "width",
+            "type": "u8"
+          },
+          {
+            "name": "data",
+            "type": "bytes"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "IndexOutOfBounds",
+      "msg": "Index out of bounds."
+    },
+    {
+      "code": 6001,
+      "name": "UnknownDirection",
+      "msg": "Unknown direction."
+    },
+    {
+      "code": 6002,
+      "name": "InitialisationFailed",
+      "msg": "Wrong data."
+    },
+    {
+      "code": 6003,
+      "name": "InvalidAccount",
+      "msg": "Invalid Account."
+    },
+    {
+      "code": 6004,
+      "name": "NotAuthorized",
+      "msg": "Not Authorized."
+    }
+  ]
+   
+}
